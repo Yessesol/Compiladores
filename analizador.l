@@ -30,13 +30,23 @@ COMEN_MULTIPLE = "/*"[^"/"]*"*/"
 .			fprintf(yyout,"error: %s \n", yytext); 
 
 %%
-main( argc, argv){
-int argc;
-char **argv;
-++argv, --argc;
-if (argc > 0)
-yyin=fopen(argv[0],"r");
-else
-yyin=stdin;
-yylex();
+int main(int argc, char *argv[])
+{
+ if(argc != 3){
+ printf("Parámetros incorrectos\n Uso:%s ejemplo.txt salida.txt\n", argv[0]);
+ return 0;
+ }
+ yyin = fopen(argv[1], "rt");
+ if(yyin == NULL){
+ printf("Imposible abrir archive de entrada %s\n",argv[1]);
+ return 0;
+ }
+ yyout= fopen(argv[2], "wt");
+ if(yyout == NULL){
+ printf("Imposible abrir archivo de salida %s\n",argv[2]);
+ return 0;
+ }
+ fprintf(yyout,"Tabla de Resultados:\n\n"); 
+ yylex();
+ return 0;
 }
