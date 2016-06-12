@@ -14,16 +14,20 @@ COMEN_UNICA = "//".*
 COMEN_MULTIPLE = "/*"[^"/"]*"*/"
 %}
 %%
-{"salir"}		{bye();return 0;}
-{CARACTERES_ESPECIALES}		{	return new TokenClass("Caracter especial", yytext()); }
-{OP_COMP}		{	return new TokenClass("Operador compuesto", yytext()); }
-{BOOL} {	return new TokenClass("bool", yytext()); }
-{IDENTIFICADOR}		{	return new TokenClass("Identificador", yytext()); }
-{FUNCION}		{	return new TokenClass("Funcion", yytext()); }
-{ENTERO}		{	return new TokenClass("int", yytext()); }
-{FLOTANTE}		{	return new TokenClass("float", yytext()); }
-{CARACTER}		{	return new TokenClass("char", yytext()); }
-{STRING}		{	return new TokenClass("string", yytext()); }
+{PALABRAS_RESERVADAS}		fprintf(yyout,"Palabra reservada: %s \n", yytext);
+{CARACTERES_ESPECIALES}		fprintf(yyout,"Caracter especial: %s \n", yytext); 
+{OP_COMP}			fprintf(yyout,"Operador compuesto: %s \n", yytext); 
+{IDENTIFICADOR}			fprintf(yyout,"Identificador: %s \n", yytext); 
+{FUNCION}			fprintf(yyout,"Funcion: %s \n", yytext); 
+{ENTERO}			fprintf(yyout,"int: %s \n", yytext); 
+{FLOTANTE}			fprintf(yyout,"float: %s \n", yytext); 
+{BOOL}				fprintf(yyout,"bool: %s \n", yytext); 
+{CARACTER}			fprintf(yyout,"char: %s \n", yytext); 
+{STRING}			fprintf(yyout,"string: %s \n", yytext); 
+{COMEN_UNICA}			fprintf(yyout,"Comentario de unica linea: %s \n", yytext); 
+{COMEN_MULTIPLE}		fprintf(yyout,"Comentario multiple: %s \n", yytext);
+[ \n\t]+                /*Se saltara los espacios*/
+.			fprintf(yyout,"error: %s \n", yytext); 
 
 %%
 main( argc, argv){
