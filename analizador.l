@@ -1,18 +1,21 @@
+%option yylineno
+%option lex-compat
 %{
-#include <stdio.h>
-PALABRAS_RESERVADAS = "int"|"float"|"bool"|"char"|"String"|"if"|"then"|"else"|"while"|"do"|"input"|"output"|"return"
-CARACTERES_ESPECIALES = "<="|";"|":"|"("|")"|"{"|"}"|"+"|"-"|"*"|"/"|"<"|">"|"="|"!"|"&"|"$"
-OP_COMP = ">="|"<="|"!="|"&&"|"||"|"=="
-IDENTIFICADOR = [a-z][_a-zA-Z0-9]*
-FUNCION = {ID}"()"
-ENTERO = -?[0-9]+
-FLOTANTE = {ENTERO}"."[0-9]+
-BOOL = true|false
-CARACTER = '[^ \n\t]'
-STRING = \"[^\n\t]+\"
-COMEN_UNICA = "//".*
-COMEN_MULTIPLE = "/*"[^"/"]*"*/"
+float ban=0;
 %}
+
+PALABRAS_RESERVADAS "int"|"float"|"bool"|"char"|"String"|"if"|"then"|"else"|"while"|"do"|"input"|"output"|"return"
+CARACTERES_ESPECIALES  "<="|";"|":"|"("|")"|"{"|"}"|"+"|"-"|"*"|"/"|"<"|">"|"="|"!"|"&"|"$"
+OP_COMP  ">="|"<="|"!="|"&&"|"||"|"=="
+IDENTIFICADOR  [a-z][_a-zA-Z0-9]*
+FUNCION  {IDENTIFICADOR}"()"
+ENTERO  -?[0-9]+
+FLOTANTE  {ENTERO}"."[0-9]+
+BOOL "true|false"
+CARACTER  '[^ \n\t]'
+STRING  \"[^\n\t]+\"
+COMEN_UNICA  "//".*
+COMEN_MULTIPLE  "/*"[^"/"]*"*/"
 %%
 {PALABRAS_RESERVADAS}		fprintf(yyout,"Palabra reservada: %s \n", yytext);
 {CARACTERES_ESPECIALES}		fprintf(yyout,"Caracter especial: %s \n", yytext); 
