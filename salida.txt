@@ -1,0 +1,9 @@
+Tabla de Resultados:
+
+error: @ 0 
+Identificador: string 
+error: @ 2 
+Palabra reservada: int 
+Identificador: b 
+Funcion: funcio() 
+error: @ 5 
