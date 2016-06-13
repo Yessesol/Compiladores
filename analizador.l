@@ -29,8 +29,9 @@ COMEN_MULTIPLE  "/*"[^"/"]*"*/"
 {STRING}			fprintf(yyout,"string: %s \n", yytext); 
 {COMEN_UNICA}			fprintf(yyout,"Comentario de unica linea: %s \n", yytext); 
 {COMEN_MULTIPLE}		fprintf(yyout,"Comentario multiple: %s \n", yytext);
-[ \n\t]+                /*Se saltara los espacios*/
-.			fprintf(yyout,"error: %s \n", yytext); 
+[ \t]+               		
+[\n]				yylineno++; 
+.				fprintf(yyout,"error: %s %d \n", yytext, yylineno/2); 
 
 %%
 int main(int argc, char *argv[])
