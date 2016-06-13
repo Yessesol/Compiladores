@@ -1,9 +1,7 @@
 %option yylineno
 %option lex-compat
 %{
-float ban=0;
 %}
-
 PALABRAS_RESERVADAS "int"|"float"|"bool"|"char"|"String"|"if"|"then"|"else"|"while"|"do"|"input"|"output"|"return"
 CARACTERES_ESPECIALES  "<="|";"|":"|"("|")"|"{"|"}"|"+"|"-"|"*"|"/"|"<"|">"|"="|"!"|"&"|"$"
 OP_COMP  ">="|"<="|"!="|"&&"|"||"|"=="
