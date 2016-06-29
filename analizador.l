@@ -16,11 +16,14 @@ FUNCION  {IDENTIFICADOR}"()"
 ENTERO_POSITIVO [0-9]+
 ENTERO  -?[0-9]+
 FLOTANTE  {ENTERO}"."[0-9]+
-BOOL "true|false"
+BOOL true|false
 CARACTER  '[^ \n\t]'
 STRING  \"[^\n\t]+\"
 COMEN_UNICA  "//".*
 COMEN_MULTIPLE  "/*"[^"/"]*"*/"
+DOS_PUNTOS ":"
+CORCH_A "["
+CORCH_C "]"
 %%
 {PALABRAS_RESERVADAS}		fprintf(yyout,"Palabra reservada: %s \n", yytext);
 {CARACTERES_ESPECIALES}		fprintf(yyout,"Caracter especial: %s \n", yytext); 
