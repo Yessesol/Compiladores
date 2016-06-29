@@ -1,12 +1,19 @@
+%{
+#include <stdlib.h>
+void yyerror(char *);
+#include "analizadorsintactico.tab.h"
+%}
 %option yylineno
 %option lex-compat
-%{
-%}
-PALABRAS_RESERVADAS "int"|"float"|"bool"|"char"|"String"|"if"|"then"|"else"|"while"|"do"|"input"|"output"|"return"
-CARACTERES_ESPECIALES  "<="|";"|":"|"("|")"|"{"|"}"|"+"|"-"|"*"|"/"|"<"|">"|"="|"!"|"&"|"$"
+    
+PALABRAS_RESERVADAS "if"|"then"|"else"|"while"|"do"|"input"|"output"|"return"
+TIPO_VARIABLE "char"|"int"|"float"|"bool"|"string" 
+CARACTERES_ESPECIALES  "<="|";"|"+"|"-"|"*"|"/"|"<"|">"|"="|"!"|"&"|"$"
+AGRUPADORES "{"|"}"|"("|")"
 OP_COMP  ">="|"<="|"!="|"&&"|"||"|"=="
 IDENTIFICADOR  [a-z][_a-zA-Z0-9]*
 FUNCION  {IDENTIFICADOR}"()"
+ENTERO_POSITIVO [0-9]+
 ENTERO  -?[0-9]+
 FLOTANTE  {ENTERO}"."[0-9]+
 BOOL "true|false"
