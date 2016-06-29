@@ -33,16 +33,18 @@ CORCH_C "]"
 {FUNCION}			return FUNCION; 
 {ENTERO_POSITIVO}		return ENTERO_POSITIVO;
 {ENTERO}         		return ENTERO;
-{FLOTANTE}			fprintf(yyout,"float: %s \n", yytext); 
-{BOOL}				fprintf(yyout,"bool: %s \n", yytext); 
-{CARACTER}			fprintf(yyout,"char: %s \n", yytext); 
-{STRING}			fprintf(yyout,"string: %s \n", yytext); 
-{COMEN_UNICA}			fprintf(yyout,"Comentario de unica linea: %s \n", yytext); 
-{COMEN_MULTIPLE}		fprintf(yyout,"Comentario multiple: %s \n", yytext);
+{FLOTANTE}			return FLOTANTE; 
+{BOOL}				return BOOL; 
+{CARACTER}			return CARACTER; 
+{STRING}			return STRING;
+{DOS_PUNTOS}     		return DOS_PUNTOS; 
+{CORCH_A}                       return CORCH_A;
+{CORCH_C}                       return CORCH_C;
+{COMEN_UNICA}			 
+{COMEN_MULTIPLE}		
 [ \t]+               		
 [\n]				yylineno++; 
 .				fprintf(yyout,"error: %s %d \n", yytext, yylineno/2); 
-
 %%
 int main(int argc, char *argv[])
 {
