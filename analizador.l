@@ -25,12 +25,14 @@ DOS_PUNTOS ":"
 CORCH_A "["
 CORCH_C "]"
 %%
-{PALABRAS_RESERVADAS}		fprintf(yyout,"Palabra reservada: %s \n", yytext);
-{CARACTERES_ESPECIALES}		fprintf(yyout,"Caracter especial: %s \n", yytext); 
-{OP_COMP}			fprintf(yyout,"Operador compuesto: %s \n", yytext); 
-{IDENTIFICADOR}			fprintf(yyout,"Identificador: %s \n", yytext); 
-{FUNCION}			fprintf(yyout,"Funcion: %s \n", yytext); 
-{ENTERO}			fprintf(yyout,"int: %s \n", yytext); 
+{PALABRAS_RESERVADAS}		return PALABRAS_RESERVADAS;
+{TIPO_VARIABLE} 		return TIPO_VARIABLE;
+{CARACTERES_ESPECIALES}		return CARACTERES_ESPECIALES;
+{OP_COMP}			return OP_COMP;
+{IDENTIFICADOR}			return IDENTIFICADOR; 
+{FUNCION}			return FUNCION; 
+{ENTERO_POSITIVO}		return ENTERO_POSITIVO;
+{ENTERO}         		return ENTERO;
 {FLOTANTE}			fprintf(yyout,"float: %s \n", yytext); 
 {BOOL}				fprintf(yyout,"bool: %s \n", yytext); 
 {CARACTER}			fprintf(yyout,"char: %s \n", yytext); 
