@@ -8,60 +8,60 @@ void yyerror(char *);
 TIPO_VARIABLE "char"|"int"|"float"|"bool"|"string" 
 CARACTERES_ESPECIALES "&"
 OP_LOGICO  "+"|"-"|"*"|"/"
-OP_COMP  ">="|"<="|"<"|">"|"!="|"=="
+OP_COMP  ">="|"<="|"<"|">"
 OP_COMP2  "!="|"=="
-IDENTIFICADOR  [a-z][_a-zA-Z0-9]*
+IDENTIFICADOR  [a-z][a-zA-Z0-9]*
 FUNCION  {IDENTIFICADOR}"()"
 ENTERO_POSITIVO [0-9]+
 ENTERO_NEGATIVO  -[0-9]+
 FLOTANTE  {ENTERO_POSITIVO}"."[0-9]+
 BOOL "true"|"false"
 CARACTER  "\'"[^\n]"\'"
-STRING  "\""[^\n]"\""
+STRING  "\""[^\n]*"\""
 COMEN_UNICA  "//".*
 COMEN_MULTIPLE  "/*"[^"/"]*"*/"
 DOS_PUNTOS ":"
 PUNTO_COMA ";"
 LLAVE_A "{"
 LLAVE_C "}"
-IF "if"
 ELSE "else"
 DO "do"
-WHILE "while"
-THEN "then"
-IGUAL "="
+
+
 %%
 {TIPO_VARIABLE} 		return TIPO_VARIABLE;
-{CARACTERES_ESPECIALES}		return CARACTERES_ESPECIALES;
-{OP_COMP}			return OP_COMP;
-{OP_COMP2}			return OP_COMP2;
-{IDENTIFICADOR}			return IDENTIFICADOR; 
-{FUNCION}			return FUNCION; 
-{ENTERO_POSITIVO}		return ENTERO_POSITIVO;
-{ENTERO_NEGATIVO}     		return ENTERO_NEGATIVO;
-{FLOTANTE}			return FLOTANTE; 
-{BOOL}				return BOOL; 
-{CARACTER}			return CARACTER; 
-{STRING}			return STRING;
-{DOS_PUNTOS}     		return DOS_PUNTOS; 
-"["	                        return CORCH_A;
-"]"	                        return CORCH_C;
-{PUNTO_COMA}                    return PUNTO_COMA;
-{LLAVE_A}  			return LLAVE_A;
-{LLAVE_C}  			return LLAVE_C;
-{IGUAL}  			return IGUAL;
-{IF}  				return IF;
+"if" 				return IF;
+"then"  			return THEN;
 {ELSE}  			return ELSE;
-{WHILE}  			return WHILE;
+"while"  			return WHILE;
 {DO}  				return DO;
-{THEN}  			return THEN;
-"("	 			return PAREN_A;
-")"  				return PAREN_C;
-{OP_LOGICO}  			return OP_LOGICO;
-","				return SEPARADOR;
 "printf"		        return PRINTF;
 "scanf"				return SCANF;
 "return"			return RETURN;
+{IDENTIFICADOR}			return IDENTIFICADOR; 
+"="  				return IGUAL; 	
+{DOS_PUNTOS}     		return DOS_PUNTOS; 
+","				return SEPARADOR;
+{CARACTERES_ESPECIALES}		return CARACTERES_ESPECIALES;
+{OP_LOGICO}  			return OP_LOGICO;
+{OP_COMP}			return OP_COMP;
+{OP_COMP2}			return OP_COMP2;
+"("	 			return PAREN_A;
+")"  				return PAREN_C;
+{LLAVE_A}  			return LLAVE_A;
+{LLAVE_C}  			return LLAVE_C;
+"["	                        return CORCH_A;
+"]"	                        return CORCH_C;
+{ENTERO_POSITIVO}		return ENTERO_POSITIVO;
+{ENTERO_NEGATIVO}     		return ENTERO_NEGATIVO;
+{FLOTANTE}     		return FLOTANTE;
+{BOOL}     		return BOOL;
+{CARACTER}			return CARACTER; 
+{STRING}			return STRING;
+{PUNTO_COMA}                    return PUNTO_COMA;
+
+
+
 {COMEN_UNICA}			 
 {COMEN_MULTIPLE}		
 [ \t]+               		
