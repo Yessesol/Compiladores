@@ -53,6 +53,10 @@ declaracionGlobal:
 		|TIPO_VARIABLE IDENTIFICADOR CORCH_A ENTERO_POSITIVO CORCH_C
 		;
 funciones:
+		encabezado_funcion  bloque_funcion	
+
+		;
+encabezado_funcion: 
 		TIPO_VARIABLE IDENTIFICADOR DOS_PUNTOS PAREN_A PAREN_C
 		|TIPO_VARIABLE IDENTIFICADOR DOS_PUNTOS PAREN_A parametros PAREN_C
 		;
@@ -63,6 +67,11 @@ parametros:
 declaracionLocal:
 		TIPO_VARIABLE DOS_PUNTOS IDENTIFICADOR PUNTO_COMA
 		;
+bloque_funcion: LLAVE_A declaracionLocal comando LLAVE_C
+		|LLAVE_A declaracionLocal LLAVE_C
+		|LLAVE_A comando LLAVE_C
+		|LLAVE_A LLAVE_C
+	;
 
 controlIf:
 	IF PAREN_A expresionLogica PAREN_C THEN comando
@@ -103,7 +112,15 @@ comando:
         |operacionesRetorno
 	|asignacion comando
 	|operacionesEntradaSalida comando
-        |operacionesRetorno comando 	
+        |operacionesRetorno comando
+	|controlIf 
+	|controlIfElse
+	|controlWhile
+	|controlDoWhile	
+	|controlIf comando
+	|controlIfElse comando
+	|controlWhile comando
+	|controlDoWhile	comando
 	;
 operacionesRetorno: 	
 		RETURN IDENTIFICADOR PUNTO_COMA
