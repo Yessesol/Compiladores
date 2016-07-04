@@ -72,15 +72,20 @@ controlIf:
 ;
 controlIfElse:
 	IF PAREN_A expresionLogica PAREN_C THEN comando ELSE comando
-	|IF PAREN_A expresionLogica PAREN_C THEN comando ELSE comando controlIfElse
+|IF PAREN_A expresionLogica PAREN_C THEN LLAVE_A  LLAVE_C  ELSE  LLAVE_A LLAVE_C
+|IF PAREN_A expresionLogica PAREN_C THEN LLAVE_A comando LLAVE_C  ELSE  LLAVE_A comando LLAVE_C
 	;
+
 controlWhile: 
 	WHILE PAREN_A expresionLogica PAREN_C DO comando
-	 |WHILE PAREN_A expresionLogica PAREN_C DO comando controlWhile
+|WHILE PAREN_A expresionLogica PAREN_C DO LLAVE_A comando LLAVE_C 
+|WHILE PAREN_A expresionLogica PAREN_C DO LLAVE_A LLAVE_C
+
 	;
 controlDoWhile: 
 	DO comando WHILE PAREN_A expresionLogica PAREN_C
-	|DO comando WHILE PAREN_A expresionLogica PAREN_C controlDoWhile
+|DO LLAVE_A LLAVE_C  WHILE PAREN_A expresionLogica PAREN_C 
+	|DO LLAVE_A comando LLAVE_C  WHILE PAREN_A expresionLogica PAREN_C 
 	;
 expresionLogica: IDENTIFICADOR OP_COMP IDENTIFICADOR 
 		|IDENTIFICADOR OP_COMP ENTERO_POSITIVO
