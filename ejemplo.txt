@@ -1,6 +1,11 @@
-@
-string 
-@
-int b
-funcio()
-@
+
+main(){
+int a;
+int b;
+int c;
+a=5;
+b=6;
+if(a==6){
+return c;
+}
+}
